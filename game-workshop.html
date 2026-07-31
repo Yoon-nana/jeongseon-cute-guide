@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10283b">
+  <meta name="description" content="고학년 정선 탐험대 웹게임 제작용 캐릭터·배경 이미지 프롬프트 연구소">
+  <title>정선! 탐험대 · 게임 제작 프롬프트 연구소</title>
+  <style>
+    :root {
+      --navy: #10283b;
+      --ink: #1d3347;
+      --muted: #60788d;
+      --green: #2d9b71;
+      --orange: #f29c38;
+      --blue: #dceafa;
+      --mint: #def3e9;
+      --yellow: #fff0c2;
+      --peach: #ffe1d8;
+      --purple: #eee5ff;
+      --line: #d8e4ea;
+      --paper: #f7fafc;
+      --white: #fff;
+      --shadow: 0 18px 50px rgba(24, 56, 74, .12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: linear-gradient(180deg, #edf5f6 0, var(--paper) 360px); font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+    .page-shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .site-header { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--navy); text-decoration: none; font-weight: 1000; }
+    .brand-mark { display: grid; place-items: center; width: 45px; height: 45px; border-radius: 16px; color: white; background: var(--green); font-size: 23px; box-shadow: 0 8px 16px rgba(45,155,113,.25); }
+    .brand b, .brand small { display: block; }.brand b { font-size: 18px; }.brand small { margin-top: 3px; color: var(--muted); font-size: 11px; }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .grade-chip { padding: 9px 13px; border-radius: 999px; color: #9a5a13; background: var(--yellow); font-size: 12px; font-weight: 1000; }
+    .home-link { padding: 10px 14px; border-radius: 12px; color: var(--green); background: white; border: 1px solid var(--line); font-size: 12px; font-weight: 1000; text-decoration: none; }
+    .hero { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; gap: 30px; align-items: center; min-height: 425px; padding: 52px 58px; overflow: hidden; border-radius: 34px; color: white; background: var(--navy); box-shadow: var(--shadow); }
+    .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; opacity: .9; pointer-events: none; }
+    .hero::before { width: 260px; height: 260px; right: 100px; top: -110px; background: var(--green); }
+    .hero::after { width: 145px; height: 145px; right: 32px; top: 150px; background: var(--orange); }
+    .hero-copy, .hero-art { position: relative; z-index: 1; }
+    .kicker { margin: 0 0 14px; color: var(--yellow); font-size: 14px; font-weight: 1000; letter-spacing: .04em; }
+    h1, h2, h3, p { word-break: keep-all; }
+    .hero h1 { margin: 0; font-size: clamp(40px, 6vw, 70px); line-height: 1.04; letter-spacing: -.07em; }
+    .hero h1 span { color: var(--orange); }
+    .hero-copy > p { max-width: 610px; margin: 22px 0 0; color: #d6e7f0; font-size: 18px; line-height: 1.7; font-weight: 700; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .hero-actions a { padding: 13px 16px; border-radius: 14px; color: var(--navy); background: white; font-size: 13px; font-weight: 1000; text-decoration: none; }
+    .hero-actions a:last-child { color: white; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3); }
+    .hero-art { display: grid; justify-items: center; align-content: center; min-height: 310px; }
+    .hero-art img { width: min(270px, 80%); max-height: 260px; object-fit: contain; filter: drop-shadow(0 18px 15px rgba(0,0,0,.25)); animation: float 4s ease-in-out infinite; }
+    .hero-note { max-width: 320px; margin-top: 12px; padding: 12px 15px; border-radius: 16px; color: var(--navy); background: white; font-size: 12px; font-weight: 900; text-align: center; }
+    .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 26px 0 34px; }
+    .how-card { padding: 20px; border: 1px solid var(--line); border-radius: 20px; background: white; }
+    .how-card b { display: block; margin-bottom: 7px; font-size: 17px; }.how-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; font-weight: 700; }
+    .how-card:nth-child(1) { background: var(--blue); }.how-card:nth-child(2) { background: var(--mint); }.how-card:nth-child(3) { background: var(--yellow); }
+    .lab-card { scroll-margin-top: 20px; padding: 30px; margin: 22px 0; border-radius: 30px; background: white; border: 2px solid var(--line); box-shadow: var(--shadow); }
+    .lab-card.character { border-color: #b9dfd0; }.lab-card.background { border-color: #f1d49f; }
+    .lab-head { display: flex; align-items: flex-start; gap: 15px; }.lab-no { display: grid; place-items: center; flex: 0 0 54px; height: 54px; border-radius: 18px; color: white; background: var(--green); font-size: 20px; font-weight: 1000; }.background .lab-no { background: var(--orange); }
+    .lab-head small { display: block; margin-bottom: 5px; color: var(--green); font-size: 12px; font-weight: 1000; }.background .lab-head small { color: #bd6d18; }
+    .lab-head h2 { margin: 0; color: var(--navy); font-size: 30px; letter-spacing: -.06em; }.lab-intro { margin: 17px 0 23px; color: var(--muted); font-size: 14px; line-height: 1.65; font-weight: 700; }
+    .field-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 16px; }
+    .field { display: grid; gap: 7px; }.field.full { grid-column: 1 / -1; }.field label { color: var(--ink); font-size: 13px; font-weight: 1000; }
+    input, select { width: 100%; min-height: 46px; padding: 11px 13px; color: var(--ink); background: #fbfdfe; border: 2px solid var(--line); border-radius: 12px; outline: none; }
+    input:focus, select:focus { border-color: var(--green); box-shadow: 0 0 0 4px rgba(45,155,113,.12); }
+    .background input:focus, .background select:focus { border-color: var(--orange); box-shadow: 0 0 0 4px rgba(242,156,56,.14); }
+    .prompt-panel { margin-top: 23px; overflow: hidden; border-radius: 20px; background: var(--navy); }
+    .prompt-top { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 15px 18px; color: white; background: rgba(255,255,255,.08); }.prompt-top b { font-size: 15px; }.prompt-top span { color: #b8d4df; font-size: 11px; font-weight: 800; }
+    pre { min-height: 215px; margin: 0; padding: 20px; overflow: auto; white-space: pre-wrap; color: #f2f8fa; font: 14px/1.75 "Cascadia Mono", Consolas, monospace; }
+    .prompt-actions { display: flex; align-items: center; gap: 10px; padding: 13px 17px; background: rgba(0,0,0,.14); }.prompt-actions button { border: 0; border-radius: 11px; padding: 11px 15px; cursor: pointer; font-size: 12px; font-weight: 1000; }.make-button { color: var(--navy); background: var(--yellow); }.copy-button { color: white; background: var(--green); }.background .copy-button { background: var(--orange); }.copy-status { color: #b8d4df; font-size: 11px; font-weight: 800; }
+    .safety { display: grid; grid-template-columns: auto 1fr; gap: 13px; align-items: start; margin-top: 18px; padding: 16px; border-radius: 16px; color: #6f5727; background: var(--yellow); }.safety > span { font-size: 25px; }.safety b { display: block; margin-bottom: 4px; font-size: 13px; }.safety p { margin: 0; font-size: 12px; line-height: 1.55; font-weight: 700; }
+    .finish { margin: 34px 0 60px; padding: 30px; border-radius: 25px; background: linear-gradient(135deg, var(--mint), var(--blue)); border: 1px solid #c7e3e1; }.finish h2 { margin: 0 0 13px; color: var(--navy); font-size: 25px; }.finish p { margin: 0; color: #496474; font-size: 14px; line-height: 1.7; font-weight: 700; }.finish ol { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; counter-reset: step; }.finish li { counter-increment: step; padding: 14px; border-radius: 14px; background: rgba(255,255,255,.72); font-size: 12px; font-weight: 1000; }.finish li::before { content: counter(step); display: grid; place-items: center; width: 25px; height: 25px; margin-bottom: 8px; border-radius: 8px; color: white; background: var(--green); font-size: 12px; }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 0 0 38px; color: var(--muted); font-size: 11px; font-weight: 700; } footer p { margin: 0; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
+    @media (max-width: 820px) { .hero { grid-template-columns: 1fr; padding: 38px 30px 25px; }.hero-art { min-height: 230px; }.hero-art img { width: 210px; max-height: 205px; }.how, .finish ol { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .page-shell { width: min(100% - 18px, 560px); }.site-header { align-items: flex-start; }.header-actions { flex-direction: column; align-items: flex-end; gap: 7px; }.hero { border-radius: 24px; padding: 32px 21px 22px; }.hero h1 { font-size: 43px; }.hero-copy > p { font-size: 14px; }.hero-actions a { flex: 1 1 150px; text-align: center; }.how, .field-grid, .finish ol { grid-template-columns: 1fr; }.lab-card { padding: 21px; border-radius: 22px; }.lab-head h2 { font-size: 24px; }.field.full { grid-column: auto; }.prompt-actions { flex-wrap: wrap; }.prompt-actions button { flex: 1 1 145px; }.copy-status { width: 100%; }.finish { padding: 22px; } footer { display: block; line-height: 1.7; } footer p + p { margin-top: 7px; } }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="정선이랑 처음 화면으로 이동"><span class="brand-mark">⛰</span><span><b>정선! 탐험대</b><small>고학년 웹게임 제작</small></span></a>
+      <div class="header-actions"><span class="grade-chip">초등 3–6학년</span><a class="home-link" href="./">정선 소개 앱 보기 ↗</a></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="kicker">정선! 탐험대 웹게임 제작 · 프롬프트 연구소</p>
+          <h1>게임 제작<br><span>프롬프트 연구소</span></h1>
+          <p>활동지의 기획 내용을 채우고, AI 도구에 넣을 프롬프트를 바로 복사해 보세요. 캐릭터와 정선의 배경 장소를 게임 재료로 만들어 봅니다.</p>
+          <div class="hero-actions"><a href="#characterLab">게임 캐릭터 만들기 ↓</a><a href="#backgroundLab">배경 이미지 만들기 ↓</a></div>
+        </div>
+        <div class="hero-art"><img src="assets/jeongseon-hero.png" alt="정선 탐험 안내 캐릭터"><div class="hero-note">AI 결과는 선생님과 함께 확인한 뒤 게임에 사용해요.</div></div>
+      </section>
+
+      <section class="how" aria-label="사용 순서">
+        <article class="how-card"><b>1. 활동지 내용 입력</b><p>게임 제목, 캐릭터 역할, 장소와 분위기를 먼저 정해요.</p></article>
+        <article class="how-card"><b>2. 프롬프트 업데이트</b><p>입력한 내용이 게임 제작용 문장으로 정리돼요.</p></article>
+        <article class="how-card"><b>3. 복사해서 사용</b><p>복사 버튼을 누르고 교사 계정의 AI 도구에 붙여 넣어요.</p></article>
+      </section>
+
+      <section class="lab-card character" id="characterLab" aria-labelledby="characterTitle">
+        <div class="lab-head"><span class="lab-no">01</span><div><small>미션 2 · 게임 캐릭터 생성</small><h2 id="characterTitle">플레이어가 만날 캐릭터를 만들어요</h2></div></div>
+        <p class="lab-intro">활동지 3쪽의 캐릭터 스탯을 참고해 입력하세요. 캐릭터의 역할과 게임에서 하는 일이 분명할수록 좋은 게임 캐릭터가 됩니다.</p>
+        <div class="field-grid">
+          <div class="field"><label for="characterGame">게임 제목</label><input id="characterGame" value="정선 보물지도 대작전"></div>
+          <div class="field"><label for="characterName">캐릭터 이름</label><input id="characterName" value="책별이"></div>
+          <div class="field"><label for="characterRole">게임 속 역할</label><select id="characterRole"><option>플레이어를 돕는 안내자</option><option>단서를 알려 주는 탐험 친구</option><option>미션을 내는 수수께끼 친구</option><option>보물을 지키는 보스</option><option>플레이어와 경쟁하는 라이벌</option></select></div>
+          <div class="field"><label for="characterPersonality">성격</label><input id="characterPersonality" value="친절하고 호기심이 많음"></div>
+          <div class="field full"><label for="characterAppearance">모습과 색깔</label><input id="characterAppearance" value="초록 모자, 파란 배낭, 별 모양 배지, 큰 웃는 얼굴"></div>
+          <div class="field"><label for="characterAbility">게임에서 쓰는 능력</label><input id="characterAbility" value="숨은 단서를 찾아 반짝이게 함"></div>
+          <div class="field"><label for="characterWeakness">약점 또는 조심할 점</label><input id="characterWeakness" value="어두운 곳에서는 작은 불빛이 필요함"></div>
+          <div class="field full"><label for="characterDialogue">대표 대사</label><input id="characterDialogue" value="정선의 보물은 어디에 숨어 있을까요?"></div>
+        </div>
+        <div class="prompt-panel">
+          <div class="prompt-top"><b>AI 캐릭터 생성 프롬프트</b><span>입력 내용이 자동으로 반영돼요</span></div>
+          <pre id="characterPrompt" aria-label="게임 캐릭터 생성 프롬프트"></pre>
+          <div class="prompt-actions"><button class="make-button" id="makeCharacter" type="button">프롬프트 업데이트</button><button class="copy-button" id="copyCharacter" type="button">프롬프트 복사</button><span class="copy-status" id="characterStatus" role="status">복사할 준비가 되었어요.</span></div>
+        </div>
+        <div class="safety"><span>🔎</span><div><b>AI 결과 확인</b><p>정선 주제와 캐릭터 역할이 맞는지, 실제 사람의 이름·얼굴·개인정보가 들어가지 않았는지 확인하세요.</p></div></div>
+      </section>
+
+      <section class="lab-card background" id="backgroundLab" aria-labelledby="backgroundTitle">
+        <div class="lab-head"><span class="lab-no">02</span><div><small>미션 3 · 배경 이미지 생성</small><h2 id="backgroundTitle">정선의 실제 장소를 게임 배경으로 바꿔요</h2></div></div>
+        <p class="lab-intro">활동지 4쪽에서 고른 장소를 입력하세요. 장소의 이름뿐 아니라 시간·날씨·화면에 보일 것·게임 분위기까지 넣으면 장면이 더 구체적으로 만들어집니다.</p>
+        <div class="field-grid">
+          <div class="field"><label for="backgroundGame">게임 제목</label><input id="backgroundGame" value="정선 보물지도 대작전"></div>
+          <div class="field"><label for="backgroundPlace">정선 배경 장소</label><select id="backgroundPlace"><option>동강</option><option>정선교육도서관</option><option>병방치 스카이워크</option><option>정선아리랑시장</option><option>아우라지</option><option>우리 팀이 정한 장소</option></select></div>
+          <div class="field"><label for="backgroundTime">시간·날씨</label><input id="backgroundTime" value="맑은 봄날 오후"></div>
+          <div class="field"><label for="backgroundMood">게임 분위기</label><select id="backgroundMood"><option>밝고 신나는 탐험</option><option>신비롭고 호기심 가득한 분위기</option><option>따뜻하고 편안한 분위기</option><option>긴장감 있는 미션 분위기</option></select></div>
+          <div class="field full"><label for="backgroundVisible">화면에 보일 것</label><input id="backgroundVisible" value="푸른 산, 굽이치는 강, 작은 다리, 보물 단서가 있는 표지판"></div>
+          <div class="field"><label for="backgroundPlayer">플레이어 위치</label><input id="backgroundPlayer" value="화면 아래쪽의 탐험 출발점"></div>
+          <div class="field"><label for="backgroundTreasure">숨은 보물·단서</label><input id="backgroundTreasure" value="강가 돌틈에 숨겨진 별조각"></div>
+          <div class="field full"><label for="backgroundStyle">그림 스타일</label><input id="backgroundStyle" value="초등학생용 2D 웹게임 배경, 선명한 색, 따뜻한 동화풍, 게임 화면에 맞는 가로형"></div>
+        </div>
+        <div class="prompt-panel">
+          <div class="prompt-top"><b>AI 배경 이미지 생성 프롬프트</b><span>장소 특징과 게임 화면 구성을 함께 넣어요</span></div>
+          <pre id="backgroundPrompt" aria-label="게임 배경 이미지 생성 프롬프트"></pre>
+          <div class="prompt-actions"><button class="make-button" id="makeBackground" type="button">프롬프트 업데이트</button><button class="copy-button" id="copyBackground" type="button">프롬프트 복사</button><span class="copy-status" id="backgroundStatus" role="status">복사할 준비가 되었어요.</span></div>
+        </div>
+        <div class="safety"><span>🗺️</span><div><b>배경 이미지 확인</b><p>실제 장소의 특징과 다른 모습이 섞이지 않았는지 확인하고, 출처가 필요한 사진은 선생님과 함께 기록하세요.</p></div></div>
+      </section>
+
+      <section class="finish" aria-labelledby="finishTitle">
+        <h2 id="finishTitle">프롬프트를 복사한 다음 순서</h2>
+        <p>프롬프트를 교사 계정의 AI 이미지 도구에 붙여 넣고, 결과를 활동지와 비교해 보세요. 마음에 들지 않으면 입력 내용을 고쳐 다시 만들 수 있어요.</p>
+        <ol><li>프롬프트 복사</li><li>교사 계정에 붙여 넣기</li><li>AI 결과 확인</li><li>게임 화면에 사용</li></ol>
+      </section>
+    </main>
+
+    <footer><p>정선! 탐험대 웹게임 제작 · 고학년 활동 페이지</p><p>AI 결과는 선생님과 함께 확인한 뒤 사용하세요.</p></footer>
+  </div>
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    function characterPrompt() {
+      return `정선의 모습을 바탕으로 초등학교 고학년용 웹게임에 사용할 게임 캐릭터를 만들어 주세요.\n\n게임 제목: ${$("characterGame").value}\n캐릭터 이름: ${$("characterName").value}\n게임 속 역할: ${$("characterRole").value}\n성격: ${$("characterPersonality").value}\n모습과 색깔: ${$("characterAppearance").value}\n게임에서 쓰는 능력: ${$("characterAbility").value}\n약점 또는 조심할 점: ${$("characterWeakness").value}\n대표 대사: ${$("characterDialogue").value}\n\n요청 사항:\n- 정선의 산과 강, 탐험과 보물찾기 분위기가 느껴지게 표현해 주세요.\n- 캐릭터의 역할과 능력이 한눈에 보이게 해 주세요.\n- 친근하고 안전한 2D 웹게임 캐릭터 디자인으로 만들어 주세요.\n- 실제 사람의 얼굴, 이름, 학교, 주소, 개인정보는 넣지 마세요.\n- 글자나 로고는 이미지에 넣지 마세요.`;
+    }
+
+    function backgroundPrompt() {
+      return `초등학교 고학년용 정선 탐험 웹게임의 가로형 배경 이미지를 만들어 주세요.\n\n게임 제목: ${$("backgroundGame").value}\n배경 장소: 정선의 ${$("backgroundPlace").value}\n시간·날씨: ${$("backgroundTime").value}\n게임 분위기: ${$("backgroundMood").value}\n화면에 보일 것: ${$("backgroundVisible").value}\n플레이어 위치: ${$("backgroundPlayer").value}\n숨은 보물·단서: ${$("backgroundTreasure").value}\n그림 스타일: ${$("backgroundStyle").value}\n\n요청 사항:\n- 실제 정선 장소에서 볼 수 있는 산·강·건물·길의 특징을 반영해 주세요.\n- 플레이어 캐릭터와 UI를 올려놓을 공간을 남겨 주세요.\n- 보물 단서는 너무 어렵지 않게 화면에서 찾을 수 있도록 표현해 주세요.\n- 선명하고 따뜻한 색감의 2D 게임 배경으로 만들어 주세요.\n- 글자, 로고, 워터마크, 실제 사람의 얼굴은 넣지 마세요.`;
+    }
+
+    function updatePrompts() { $("characterPrompt").textContent = characterPrompt(); $("backgroundPrompt").textContent = backgroundPrompt(); }
+
+    async function copyPrompt(promptId, statusId) {
+      const value = $(promptId).textContent;
+      try { await navigator.clipboard.writeText(value); }
+      catch (_) {
+        const helper = document.createElement("textarea"); helper.value = value; helper.style.position = "fixed"; helper.style.opacity = "0"; document.body.appendChild(helper); helper.select(); document.execCommand("copy"); helper.remove();
+      }
+      $(statusId).textContent = "복사했어요! AI 도구에 붙여 넣어 보세요.";
+      setTimeout(() => { $(statusId).textContent = "복사할 준비가 되었어요."; }, 2600);
+    }
+
+    $("makeCharacter").addEventListener("click", updatePrompts);
+    $("makeBackground").addEventListener("click", updatePrompts);
+    $("copyCharacter").addEventListener("click", () => copyPrompt("characterPrompt", "characterStatus"));
+    $("copyBackground").addEventListener("click", () => copyPrompt("backgroundPrompt", "backgroundStatus"));
+    document.querySelectorAll("input, select").forEach((field) => field.addEventListener("input", updatePrompts));
+    updatePrompts();
+  </script>
+</body>
+</html>
