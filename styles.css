@@ -312,6 +312,28 @@ a { color: inherit; }
 .story-dots { display: flex; justify-content: center; gap: 8px; }
 .story-dot { width: 13px; height: 13px; border: 0; border-radius: 50%; background: #d8c9e7; cursor: pointer; padding: 0; }
 .story-dot.is-active { width: 31px; border-radius: 999px; background: #9a62cf; }
+.adventure-book { margin-top: 34px; padding: 34px; border: 3px solid #dfe9d4; border-radius: 34px; background: linear-gradient(145deg, #fffef8, #f5fbef); box-shadow: var(--soft-shadow); }
+.adventure-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+.book-kicker { display: inline-block; margin-bottom: 8px; padding: 7px 11px; border-radius: 999px; background: #e5f5d9; color: #3f7d39; font-size: 11px; font-weight: 1000; }
+.adventure-heading h2 { margin: 0 0 8px; color: #3c513d; font-size: clamp(31px, 4vw, 43px); letter-spacing: -.06em; }
+.adventure-heading p { margin: 0; color: #68786c; font-size: 14px; line-height: 1.7; font-weight: 800; word-break: keep-all; }
+.book-badge { flex: 0 0 auto; padding: 14px 18px; border: 2px solid #fff; border-radius: 20px; background: #8d62bc; color: #efe5fa; box-shadow: 0 8px 20px rgba(88,57,122,.18); text-align: center; font-size: 10px; line-height: 1.45; font-weight: 800; transform: rotate(2deg); }
+.book-badge b { display: block; color: white; font-size: 14px; }
+.adventure-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.adventure-card { position: relative; min-height: 245px; overflow: hidden; padding: 25px 20px 20px; border: 2px solid rgba(255,255,255,.92); border-radius: 25px; box-shadow: 0 10px 24px rgba(65,78,57,.1); }
+.adventure-card::after { content: ''; position: absolute; right: -24px; bottom: -24px; width: 90px; height: 90px; border-radius: 50%; background: rgba(255,255,255,.38); }
+.adventure-card.green { background: #e5f7df; }.adventure-card.blue { background: #e2f3ff; }.adventure-card.yellow { background: #fff4c9; }
+.adventure-card.orange { background: #ffe8d2; }.adventure-card.purple { background: #eee4ff; }.adventure-card.pink { background: #ffe4ea; }
+.adventure-number { position: absolute; top: 13px; right: 15px; width: 29px; height: 29px; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.9); color: #665577; font-size: 12px; font-weight: 1000; }
+.adventure-icon { display: grid; place-items: center; width: 61px; height: 61px; margin-bottom: 15px; border-radius: 19px; background: rgba(255,255,255,.76); font-size: 31px; transform: rotate(-3deg); }
+.adventure-card:nth-child(even) .adventure-icon { transform: rotate(3deg); }
+.adventure-card h3 { position: relative; z-index: 1; margin: 0 0 9px; color: #3e4e43; font-size: 20px; letter-spacing: -.04em; }
+.adventure-card p { position: relative; z-index: 1; margin: 0; color: #5c6c62; font-size: 12px; line-height: 1.7; font-weight: 750; word-break: keep-all; }
+.adventure-finish { display: flex; align-items: center; gap: 16px; margin-top: 18px; padding: 18px 21px; border-radius: 22px; background: #415e48; color: white; }
+.adventure-finish > span { flex: 0 0 auto; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 17px; background: rgba(255,255,255,.13); font-size: 28px; }
+.adventure-finish b { display: block; margin-bottom: 4px; color: #d8f5ca; font-size: 13px; }
+.adventure-finish p { margin: 0; font-size: 12px; line-height: 1.55; font-weight: 750; word-break: keep-all; }
+.book-source-note { margin: 14px 4px 0; color: #758278; font-size: 10px; line-height: 1.55; font-weight: 700; word-break: keep-all; }
 .closing-card { display: flex; align-items: center; gap: 22px; margin-top: 28px; padding: 23px 28px; border-radius: 28px; background: linear-gradient(135deg, #e9f8df, #fff3c9); border: 3px dashed #9bd279; }
 .closing-card img { width: 125px; height: 125px; object-fit: contain; }.closing-card small, .closing-card b { display: block; }.closing-card small { color: #5e8d49; font-size: 11px; font-weight: 900; }.closing-card b { margin: 5px 0 13px; font-size: 18px; line-height: 1.45; }.closing-card button { border: 0; border-radius: 14px; padding: 10px 13px; background: #65bd62; color: white; font-size: 11px; font-weight: 1000; cursor: pointer; }
 
@@ -400,6 +422,18 @@ button:focus-visible, a:focus-visible { outline: 4px solid #ffcf43; outline-offs
   .storybook-copy > p { min-height: 0; font-size: 14px; }
   .story-controls { grid-template-columns: auto 1fr auto; }
   .story-controls > button { padding: 10px; font-size: 10px; }
+  .adventure-book { margin-top: 22px; padding: 21px 15px; border-radius: 26px; }
+  .adventure-heading { align-items: flex-start; gap: 12px; }
+  .adventure-heading h2 { font-size: 28px; }
+  .adventure-heading p { font-size: 12px; }
+  .book-badge { padding: 10px 11px; border-radius: 16px; font-size: 8px; }
+  .book-badge b { font-size: 11px; }
+  .adventure-grid { grid-template-columns: 1fr; gap: 10px; }
+  .adventure-card { min-height: 0; padding: 18px 18px 18px 88px; }
+  .adventure-icon { position: absolute; top: 19px; left: 16px; width: 56px; height: 56px; margin: 0; }
+  .adventure-card h3 { font-size: 17px; }
+  .adventure-card p { font-size: 11px; }
+  .adventure-finish { padding: 15px; }
   .closing-card { padding: 16px; gap: 12px; }
   .closing-card img { width: 85px; height: 85px; }.closing-card b { font-size: 14px; }
   footer { display: block; text-align: center; padding-bottom: 15px; line-height: 1.6; }
